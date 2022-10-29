@@ -21,7 +21,9 @@ app.get('/puppies', async (req, res, next) => {
   let allPuppies;
 
   // Your code here
-  allPuppies = await Puppy.findAll();
+  allPuppies = await Puppy.findAll({
+    order: ['name']
+  });
 
   res.json(allPuppies);
 });
