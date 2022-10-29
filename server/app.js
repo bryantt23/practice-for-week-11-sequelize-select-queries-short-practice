@@ -53,9 +53,15 @@ app.get('/puppies/chipped', async (req, res, next) => {
 // One puppy matching a name param
 // Finding one record by attribute
 app.get('/puppies/name/:name', async (req, res, next) => {
+  console.log('🚀 ~ file: app.js ~ line 56 ~ app.get ~ req', req.params.name);
   let puppyByName;
 
   // Your code here
+  puppyByName = await Puppy.findOne({ where: { name: req.params.name } });
+  console.log(
+    '🚀 ~ file: app.js ~ line 61 ~ app.get ~ puppyByName',
+    puppyByName
+  );
 
   res.json(puppyByName);
 });
