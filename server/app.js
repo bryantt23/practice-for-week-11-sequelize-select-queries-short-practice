@@ -94,6 +94,19 @@ app.get('/puppies/tinybabies', async (req, res, next) => {
 
   // Your code here
 
+  tinyBabyPuppies = await Puppy.findAll({
+    where: {
+      age_yrs: {
+        [Op.lt]: 1
+      },
+      weight_lbs: { [Op.lt]: 20 }
+    },
+    order: [
+      ['age_yrs', 'ASC'],
+      ['weight_lbs', 'ASC']
+    ]
+  });
+
   res.json(tinyBabyPuppies);
 });
 
