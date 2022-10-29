@@ -66,6 +66,18 @@ app.get('/puppies/name/:name', async (req, res, next) => {
   res.json(puppyByName);
 });
 
+// STEP 4
+// One puppy by id
+app.get('/puppies/:id', async (req, res, next) => {
+  console.log('🚀 ~ file: app.js ~ line 72 ~ app.get ~ req', req.params);
+  let puppyById;
+
+  // Your code here
+  puppyById = await Puppy.findByPk(req.params.id);
+
+  res.json(puppyById);
+});
+
 // BONUS STEP 5
 // All puppies with breed ending in 'Shepherd'
 // WHERE clause with a comparison
