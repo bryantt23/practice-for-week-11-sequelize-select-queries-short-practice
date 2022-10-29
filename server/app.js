@@ -1,6 +1,7 @@
 // Instantiate Express and the application - DO NOT MODIFY
 const express = require('express');
 const app = express();
+const sequelize = require('sequelize');
 
 // Import environment variables in order to connect to database - DO NOT MODIFY
 require('dotenv').config();
@@ -35,6 +36,15 @@ app.get('/puppies/chipped', async (req, res, next) => {
   let chippedPuppies;
 
   // Your code here
+  chippedPuppies = await Puppy.findAll({
+    where: {
+      microchipped: 1
+    },
+    order: [
+      ['age_yrs', 'DESC'],
+      ['name', 'ASC']
+    ]
+  });
 
   res.json(chippedPuppies);
 });
